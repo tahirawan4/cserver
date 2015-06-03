@@ -37,6 +37,20 @@ def catgories(request):
 
     return  HttpResponse(simplejson.dumps(data), mimetype='application/json')
 
+def catgories2(request):
+    cat_data = Categories.objects.all()
+
+    data = []
+    for cat in cat_data:
+        data.append({
+            'name'          : cat.name,
+            'cay_id'        : cat.id
+        })
+
+    print data
+
+    return  HttpResponse(simplejson.dumps(data), mimetype='application/json')
+
 def quotes(request):
     quote_data=''
     if request.GET.get('authorid'):
